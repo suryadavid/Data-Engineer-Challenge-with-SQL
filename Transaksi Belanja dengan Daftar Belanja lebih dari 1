@@ -1,0 +1,12 @@
+SELECT tr_penjualan.kode_transaksi, ms_pelanggan.kode_pelanggan, ms_pelanggan.nama_pelanggan, tr_penjualan.tanggal_transaksi, COUNT(tr_penjualan_detail.kode_produk) as jumlah_detail
+FROM tr_penjualan_detail
+INNER JOIN tr_penjualan
+ON tr_penjualan_detail.kode_transaksi=tr_penjualan.kode_transaksi 
+INNER JOIN ms_pelanggan
+ON ms_pelanggan.kode_pelanggan = tr_penjualan.kode_pelanggan
+GROUP BY 
+tr_penjualan.kode_transaksi,
+tr_penjualan.kode_pelanggan,
+ms_pelanggan.nama_pelanggan,
+tr_penjualan.tanggal_transaksi
+HAVING COUNT(tr_penjualan_detail.kode_transaksi)>1
