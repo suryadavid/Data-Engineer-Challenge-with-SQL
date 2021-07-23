@@ -1,0 +1,7 @@
+SELECT tr_penjualan_detail.kode_produk, ms_produk.nama_produk, SUM(tr_penjualan_detail.qty) AS total_qty
+FROM ms_produk
+INNER JOIN tr_penjualan_detail
+ON ms_produk.kode_produk = tr_penjualan_detail.kode_produk
+GROUP BY kode_produk, nama_produk
+ORDER BY total_qty DESC
+limit 2;
